@@ -1,6 +1,6 @@
 # Documentação - Brand Monitor Dashboard
 
-O Brand Monitor Dashboard é uma aplicação web que permite aos usuários acompanhar o desempenho das palavras-chave de sua marca em várias métricas, como cliques, impressões e CTR. A aplicação é construída utilizando o framework Next.js e o kit de design Material-UI.
+O Brand Monitor Dashboard é uma aplicação web construída com as tecnologias Next.js, React, Material-UI, Tailwind CSS e Go Lang. Ele permite aos usuários acompanhar o desempenho das palavras-chave de sua marca em várias métricas, como cliques, impressões e CTR.
 
 ## Funcionalidades Implementadas
 
@@ -94,7 +94,9 @@ npm run dev
 ## Tecnologias Utilizadas
 
 - Next.js
+- React
 - Material-UI
+- Tailwind CSS
 - Axios (para fazer requisições à API)
 - Go Lang (backend)
 - MongoDB (banco de dados)
