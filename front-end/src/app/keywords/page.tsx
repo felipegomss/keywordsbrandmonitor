@@ -4,9 +4,9 @@
 import KeywordTable from "@/Components/KeywordTable";
 import { KeywordMetrics } from "@/types";
 import processApiData from "@/utils/data";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 
-export default function page() {
+export default function Keywords() {
   const [apiData, setApiData] = useState<KeywordMetrics[]>([]);
 
   useEffect(() => {

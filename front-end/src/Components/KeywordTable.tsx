@@ -1,4 +1,3 @@
-import * as React from "react";
 import {
   Table,
   TableBody,
@@ -34,7 +33,7 @@ const getLastMetric = (
   return lastValue;
 };
 
-const generateCSVContent = (keywords) => {
+function generateCSVContent(keywords: any[]) {
   const csvRows = [];
   const headers = ["Palavra-Chave", "Cliques", "Impressões", "CTR"];
   csvRows.push(headers.join(","));
@@ -50,9 +49,9 @@ const generateCSVContent = (keywords) => {
   });
 
   return csvRows.join("\n");
-};
+}
 
-const KeywordsTable: React.FC<KeywordsTableProps> = ({ keywords }) => {
+export default function KeywordsTable({ keywords }: KeywordsTableProps) {
   const [orderBy, setOrderBy] = useState<keyof Metric>("clicks");
   const [order, setOrder] = useState<"asc" | "desc">("asc");
   const [page, setPage] = useState(0);
@@ -72,11 +71,14 @@ const KeywordsTable: React.FC<KeywordsTableProps> = ({ keywords }) => {
     }
   });
 
-  const handleChangePage = (event, newPage) => {
+  const handleChangePage = (
+    event: any,
+    newPage: React.SetStateAction<number>
+  ) => {
     setPage(newPage);
   };
 
-  const handleChangeRowsPerPage = (event) => {
+  const handleChangeRowsPerPage = (event: { target: { value: string } }) => {
     setRowsPerPage(parseInt(event.target.value, 10));
     setPage(0);
   };
@@ -162,6 +164,4 @@ const KeywordsTable: React.FC<KeywordsTableProps> = ({ keywords }) => {
       />
     </TableContainer>
   );
-};
-
-export default KeywordsTable;
+}

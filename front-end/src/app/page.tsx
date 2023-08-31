@@ -14,7 +14,7 @@ const METAS = {
   ctr: 0.07,
 };
 
-const Home: React.FC = () => {
+export default function Home() {
   const [apiData, setApiData] = useState<KeywordMetrics[]>([]);
   const [topMetrics, setTopMetrics] = useState<TopMetrics>({
     clicks: [],
@@ -147,6 +147,4 @@ const Home: React.FC = () => {
       <div>{<Chart data={topMetrics} />}</div>
     </div>
   );
-};
-
-export default Home;
+}

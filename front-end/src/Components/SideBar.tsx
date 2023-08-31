@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { useRouter, usePathname } from "next/navigation";
 import {
   Drawer,
@@ -26,13 +26,11 @@ import useMediaQuery from "@mui/material/useMediaQuery";
 
 const NAV_DATA = [
   { text: "Dashboard", icon: <Dashboard />, link: "/" },
-  { text: "Análises", icon: <BarChart />, link: "/analyses" },
   {
     text: "Palavras-Chaves",
     icon: <ListAlt />,
     link: "/keywords",
   },
-  { text: "Redes Sociais", icon: <Tag />, link: "/social" },
 ];
 
 export default function SideBar() {
