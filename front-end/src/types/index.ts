@@ -16,3 +16,10 @@ export interface TopMetrics {
   impressions: { keyword: string; value: number }[];
   ctr: { keyword: string; value: number }[];
 }
+
+export interface Goals {
+  _id: string;
+  clicksGoal: number;
+  impressionsGoal: number;
+  ctrGoal: number;
+}

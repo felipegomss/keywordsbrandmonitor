@@ -5,14 +5,9 @@ import { Card, CardContent, CircularProgress, Typography } from "@mui/material";
 import { TrendingUp, TrendingDown } from "@mui/icons-material";
 import Chart from "@/Components/Chart";
 import processApiData from "@/utils/data";
-import { KeywordMetrics, TopMetrics } from "@/types";
+import { Goals, KeywordMetrics, TopMetrics } from "@/types";
 
 const user = "Felipe";
-const METAS = {
-  clicks: 1700,
-  impressions: 27000,
-  ctr: 0.07,
-};
 
 export default function Home() {
   const [apiData, setApiData] = useState<KeywordMetrics[]>([]);
@@ -20,6 +15,12 @@ export default function Home() {
     clicks: [],
     impressions: [],
     ctr: [],
+  });
+  const [goals, setGoals] = useState<Goals>({
+    _id: "",
+    clicksGoal: 0,
+    impressionsGoal: 0,
+    ctrGoal: 0,
   });
 
   useEffect(() => {
@@ -29,7 +30,13 @@ export default function Home() {
       setTopMetrics(processedData.topMetrics);
     };
 
+    const fetchGoal = async () => {
+      const processedData = await processApiData();
+      setGoals(processedData.goalsData);
+    };
+
     fetchData();
+    fetchGoal();
   }, []);
 
   const getLastMetric = (
@@ -68,7 +75,8 @@ export default function Home() {
     metricType: keyof TopMetrics,
     value: number
   ): number => {
-    const metaValue = METAS[metricType];
+    const goalKey = `${metricType}Goal` as keyof Goals;
+    const metaValue = goals[goalKey];
     return metricType === "ctr"
       ? (value * 100) / metaValue
       : (value / metaValue) * 100;
@@ -122,7 +130,11 @@ export default function Home() {
           <div className="flex flex-col items-center justify-center gap-2">
             <CircularProgress
               variant="determinate"
-              value={Math.round(percentageOfMeta)}
+              value={
+                Math.round(percentageOfMeta) > 100
+                  ? 100
+                  : Math.round(percentageOfMeta)
+              }
             />
             {percentageOfMeta.toFixed(2)}%
           </div>

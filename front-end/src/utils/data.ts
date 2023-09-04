@@ -12,6 +12,15 @@ const fetchApiData = async () => {
     return [];
   }
 };
+const fetchApiGoals = async () => {
+  try {
+    const response = await axios.get("http://localhost:8080/api/goals");
+    return response.data;
+  } catch (error) {
+    console.error("Error fetching API data:", error);
+    return [];
+  }
+};
 
 const calculateTopMetrics = (
   apiData: KeywordMetrics[],
@@ -37,6 +46,7 @@ const calculateTopMetrics = (
 
 const processApiData = async () => {
   const apiData = await fetchApiData();
+  const goalsData = await fetchApiGoals();
 
   const topMetrics: TopMetrics = {
     clicks: calculateTopMetrics(apiData, "clicks", 7),
@@ -47,6 +57,7 @@ const processApiData = async () => {
   return {
     apiData,
     topMetrics,
+    goalsData,
   };
 };
 

@@ -91,7 +91,7 @@ export default function SideBar() {
                 </div>
               ))}
             </span>
-            <ListItem>
+            <ListItem button onClick={() => router.push("/settings")}>
               <ListItemIcon>
                 <Settings />
               </ListItemIcon>
